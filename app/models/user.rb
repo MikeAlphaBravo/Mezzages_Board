@@ -1,4 +1,4 @@
 class User < ApplicationRecord
   has_many :mezzages
-  belongs_to :board
+  has_many :boards, through: :users_boards
 end

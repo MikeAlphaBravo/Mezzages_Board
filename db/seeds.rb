@@ -1,7 +1,41 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+class Seed
+
+  def self.begin
+    seed = Seed.new
+    seed.generate_users
+    seed.generate_boards
+    # seed.generate_mezzages
+  end
+
+  def generate_users
+    10.times do |i|
+      user = User.create!(
+        name: Faker::Internet.user_name
+      )
+      puts "USER GENORATRON #{user.name}"
+    end
+  end
+
+  def generate_boards
+    30.times do |i|
+      board = Board.create!(
+        title: Faker::Book.title,
+        description: Faker::Hipster.sentence
+      )
+      puts "BOARDOTRONIC 3000 #{board.title}"
+    end
+  end
+
+  # def generate_mezzages
+  #   10000.times do |i|
+  #
+  #     board = Board.find(rand(1..30))
+  #     user = board.users.find(rand(1..10))
+  #       title: Faker::Simpsons.location,
+  #       body: Faker::RickAndMorty.quote
+  #     )
+  #   end
+  # end
+end
+
+Seed.begin
