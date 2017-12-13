@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Board do
-  it { should have_many :users }
+describe User do
+  it { should have_many :boards }
   it { should have_many :mezzages }
 end

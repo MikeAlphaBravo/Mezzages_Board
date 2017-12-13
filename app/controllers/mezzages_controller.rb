@@ -28,11 +28,14 @@ class MezzagesController < ApplicationController
   def destroy
     @mezzage = Mezzage.find(params[:id])
     @mezzage.destroy
+    render status: 200, json: {
+      message: "Your mezzage has been deleted successfully."
+    }
   end
 
   private
 
   def mezzage_params
-    params.permit(:title, :body)
+    params.permit(:title, :body, :user_id)
   end
 end

@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    json_response(@users)
   end
 
   def show
@@ -17,19 +18,22 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update!(user_params)
-      render status: 200, json: {
-        message: "Your user has been updated successfully."
-      }
+    render status: 200, json: {
+      message: "Your user has been updated successfully."
+    }
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    render status: 200, json: {
+      message: "Your user has been deleted successfully."
+    }
   end
 
   private
 
   def user_params
-    params.permit(:name :board_id)
+    params.permit(:name)
   end
 end
